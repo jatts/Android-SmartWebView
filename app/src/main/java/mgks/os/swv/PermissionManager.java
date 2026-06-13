@@ -61,9 +61,15 @@ public class PermissionManager {
                     }
                     break;
 
-                case "NOTIFICATIONS":
+               case "NOTIFICATIONS":
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !isNotificationPermissionGranted()) {
                         permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS);
+                    }
+                    break;
+
+                case "CAMERA":
+                    if (!isCameraPermissionGranted()) {
+                        permissionsToRequest.add(Manifest.permission.CAMERA);
                     }
                     break;
 
