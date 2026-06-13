@@ -518,14 +518,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (permissionManager.isLocationPermissionGranted()) {
                     callback.invoke(origin, true, false);
                 } else {
-                    // If permission is not granted, we should request it.
-                    // We can re-use the initial request logic.
                     permissionManager.requestInitialPermissions();
                 }
             }
+
+            @Override
+            public void onPermissionRequest(android.webkit.PermissionRequest request) {
+                runOnUiThread(() -> request.grant(request.getResources()));
+            }
         };
     }
-
+  
     /**
      * Setup various features based on configuration
      */
